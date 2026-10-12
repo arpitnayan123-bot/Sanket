@@ -1,0 +1,561 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sanket editorial palette */
+  --color-ink: #0A0A0A;
+  --color-ink-soft: #111111;
+  --color-ink-card: #161616;
+  --color-ink-border: #232323;
+  --color-ink-border-soft: #1c1c1c;
+  --color-paper: #FAFAFA;
+  --color-paper-soft: #EFEFEF;
+  --color-yellow: #F5C518;
+  --color-yellow-bright: #FFD52A;
+  --color-yellow-deep: #D9A800;
+  --color-yellow-soft: rgba(245, 197, 24, 0.12);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: #0A0A0A;
+  --foreground: #FAFAFA;
+  --card: #111111;
+  --card-foreground: #FAFAFA;
+  --popover: #111111;
+  --popover-foreground: #FAFAFA;
+  --primary: #F5C518;
+  --primary-foreground: #0A0A0A;
+  --secondary: #1A1A1A;
+  --secondary-foreground: #FAFAFA;
+  --muted: #1A1A1A;
+  --muted-foreground: #8A8A8A;
+  --accent: #F5C518;
+  --accent-foreground: #0A0A0A;
+  --destructive: #EF4444;
+  --border: #232323;
+  --input: #232323;
+  --ring: #F5C518;
+  --chart-1: #F5C518;
+  --chart-2: #FAFAFA;
+  --chart-3: #8A8A8A;
+  --chart-4: #EFEFEF;
+  --chart-5: #D9A800;
+  --sidebar: #0A0A0A;
+  --sidebar-foreground: #FAFAFA;
+  --sidebar-primary: #F5C518;
+  --sidebar-primary-foreground: #0A0A0A;
+  --sidebar-accent: #1A1A1A;
+  --sidebar-accent-foreground: #FAFAFA;
+  --sidebar-border: #232323;
+  --sidebar-ring: #F5C518;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    font-feature-settings: "ss01", "cv11";
+  }
+}
+
+/* ============ Custom scrollbar — minimal ============ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F5C518;
+}
+
+::selection {
+  background: #F5C518;
+  color: #0A0A0A;
+}
+
+/* ============ Editorial typography helpers ============ */
+.font-serif-display {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-feature-settings: "ss01", "ss02", "liga", "dlig";
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Tighter tracking for big display headlines */
+.tracking-tightest {
+  letter-spacing: -0.04em;
+}
+
+/* ============ Hairline accents ============ */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2A2A2A 20%, #2A2A2A 80%, transparent);
+}
+
+.hairline-yellow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F5C518 20%, #F5C518 80%, transparent);
+}
+
+/* ============ Yellow accent text ============ */
+.text-yellow {
+  color: #F5C518;
+}
+
+.text-yellow-bright {
+  color: #FFD52A;
+}
+
+/* ============ Card styles — flat, no glass ============ */
+.card-flat {
+  background: #111111;
+  border: 1px solid #1C1C1C;
+  border-radius: 4px;
+}
+
+.card-elevated {
+  background: #161616;
+  border: 1px solid #232323;
+  border-radius: 4px;
+}
+
+/* ============ Yellow chip / badge ============ */
+.chip-yellow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background: #F5C518;
+  color: #0A0A0A;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.chip-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background: transparent;
+  color: #FAFAFA;
+  border: 1px solid #2A2A2A;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/* ============ Buttons ============ */
+.btn-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #F5C518;
+  color: #0A0A0A;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  border-radius: 2px;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-yellow:hover {
+  background: #FFD52A;
+  transform: translateY(-1px);
+}
+.btn-yellow:active {
+  transform: translateY(0);
+}
+.btn-yellow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #FAFAFA;
+  border: 1px solid #2A2A2A;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 2px;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-outline:hover {
+  border-color: #F5C518;
+  color: #F5C518;
+}
+
+/* ============ Number marker (for sections) ============ */
+.num-marker {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  color: #F5C518;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+/* ============ Code block — calm monochrome ============ */
+.code-block-mono {
+  background: #0D0D0D;
+  border: 1px solid #1C1C1C;
+  border-radius: 4px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #D4D4D4;
+}
+
+.code-block-mono .ln {
+  color: #3A3A3A;
+  user-select: none;
+  display: inline-block;
+  width: 2.25rem;
+  text-align: right;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+/* ============ Subtle entrance animations ============ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseYellow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 197, 24, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(245, 197, 24, 0);
+  }
+}
+
+.pulse-yellow {
+  animation: pulseYellow 2s ease-in-out infinite;
+}
+
+/* ============ Marquee ============ */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ Thin scrollbar for code blocks ============ */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 0;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #3A3A3A;
+}
+
+/* ============ Editorial drop-cap-ish large first letter for section intros ============ */
+.lede {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #B8B8B8;
+  max-width: 42rem;
+}
+
+/* ============ Big editorial display headline ============ */
+.display-xl {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.display-lg {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.display-md {
+  font-family: var(--font-serif-display), Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+/* ============ Yellow underline accent ============ */
+.underline-yellow {
+  background-image: linear-gradient(transparent 60%, rgba(245, 197, 24, 0.35) 60%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* ============ Hover lift for cards ============ */
+.lift-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              background-color 0.3s ease;
+}
+.lift-card:hover {
+  transform: translateY(-2px);
+  border-color: #F5C518;
+}
+
+/* ============ Animated scanline for hero waveform area ============ */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(245, 197, 24, 0.05) 50%,
+    transparent 100%
+  );
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+}
+
+/* ============ FILM GRAIN OVERLAY — premium texture ============ */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grainShift 8s steps(10) infinite;
+}
+
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 10%); }
+  80% { transform: translate(-15%, 0%); }
+  90% { transform: translate(10%, 5%); }
+}
+
+/* ============ KINETIC TYPOGRAPHY — letter slide-up reveal ============ */
+.kinetic-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%) rotate(8deg);
+  animation: kineticReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes kineticReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* ============ Self-drawing hairline (for section dividers) ============ */
+.draw-line {
+  position: relative;
+  height: 1px;
+  background: transparent;
+  overflow: hidden;
+}
+.draw-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, #F5C518, transparent);
+  transform: translateX(-100%);
+  animation: drawLine 2.5s ease-in-out infinite;
+}
+
+@keyframes drawLine {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ============ Marquee ticker ============ */
+.marquee-strip {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid #1C1C1C;
+  border-bottom: 1px solid #1C1C1C;
+  padding: 1.25rem 0;
+  background: #0A0A0A;
+}
+.marquee-strip-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+  animation: marqueeSlide 35s linear infinite;
+  padding-right: 3rem;
+}
+@keyframes marqueeSlide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ============ Magnetic button hover effect ============ */
+.magnetic {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* ============ Pulse glow for live indicators ============ */
+@keyframes livePulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(245, 197, 24, 0.5);
+    opacity: 1;
+  }
+  50% { 
+    box-shadow: 0 0 0 6px rgba(245, 197, 24, 0);
+    opacity: 0.7;
+  }
+}
+.live-pulse {
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+
+/* ============ Scroll-reveal base ============ */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ Number count-up animation ============ */
+@keyframes numFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.num-fade-in {
+  animation: numFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ============ Hover-tilt card ============ */
+.tilt-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease;
+  transform-style: preserve-3d;
+}
+.tilt-card:hover {
+  border-color: #F5C518;
+}
+
+/* ============ Floating accent dot ============ */
+@keyframes floatDot {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-10px) translateX(4px); }
+  66% { transform: translateY(6px) translateX(-4px); }
+}
+.float-dot {
+  animation: floatDot 5s ease-in-out infinite;
+}
